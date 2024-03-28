@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event</title>
+</head>
+
+<body>
+    <h1>final dom event</h1>
+    <div id="comment-con">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum consectetur architecto esse asperiores, qui
+            aperiam amet labore quia blanditiis autem illum accusantium temporibus mollitia voluptatum fugiat at
+            voluptatem similique cupiditate!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum consectetur architecto esse asperiores, qui
+            aperiam amet labore quia blanditiis autem illum accusantium temporibus mollitia voluptatum fugiat at
+            voluptatem similique cupiditate!</p>
+        <h3>my comment</h3>
+    </div>
+    <div>
+        <textarea name="" id="c-box" cols="50" rows="10"></textarea>
+        <br>
+        <button id="btn-post">post</button>
+    </div>
+    <h3 id="h3-add">default text</h3>
+    <p id="text-dis">name list:</p>
+
+    <input id="in-text" type="text">
+    <button id="btu-up">update</button>
+    <br>
+    <br>
+    <button onclick="btuAdd()">final</button>
+    <button id="btu-event">event</button>
+    <br>
+    <br>
+
+    <div>
+        <h3 id="secret-info">My secret info</h3>
+        <input id="s-input" type="text" placeholder="please type delete">
+        <button id="btn-delete" disabled>delete</button>
+    </div>
+
+    <script>
+        function btuAdd() {
+            const btuText = document.getElementById('h3-add');
+            btuText.innerText = 'Document Object Model That is dom';
+        };
+        document.getElementById('btu-event').addEventListener('click', function () {
+            const btuEvent = document.getElementById('h3-add');
+            btuEvent.innerText = 'Document Object Model That is dom in event';
+
+        });
+        document.getElementById('btn-post').addEventListener('click', function () {
+            const cBox = document.getElementById('c-box');
+            const commentIn = cBox.value;
+            const commentCon = document.getElementById('comment-con');
+            const p = document.createElement('p');
+            p.innerText = commentIn;
+            commentCon.appendChild(p);
+            cBox.value = '';
+        });
+
+        document.getElementById('btu-up').addEventListener('click', function () {
+            const inText = document.getElementById('in-text');
+            // console.log(inText.value);
+            const textUp = inText.value;
+            const textDis = document.getElementById('text-dis');
+            textDis.innerText = textUp;
+            inText.value = '';
+        });
+
+        document.getElementById('s-input').addEventListener('keyup', function(event) {
+            const text = event.target.value;
+            const btnDelete = document.getElementById('btn-delete');
+            // console.log(text);
+            if(text == 'delete') {
+                btnDelete.removeAttribute('disabled');
+            }
+            else {
+                btnDelete.setAttribute('disable', true);
+            }
+        });
+        document.getElementById('btn-delete').addEventListener('click', function() {
+            const secretInfo = document.getElementById('secret-info');
+            secretInfo.style.display = 'none';
+        });
+
+    </script>
+</body>
+
+</html>
